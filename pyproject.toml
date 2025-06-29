@@ -1,0 +1,15 @@
+[project]
+name = "a2af"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "a2a-sdk>=0.2.9",
+    "fasta2a>=0.3.4",
+    "fastapi>=0.115.14",
+    "pydantic-ai>=0.3.4",
+    "python-dotenv>=1.1.1",
+    "ruff>=0.12.1",
+    "uvicorn>=0.34.3",
+]
