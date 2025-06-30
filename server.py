@@ -11,7 +11,6 @@ MCP_SERVER_URL = "http://localhost:8001/mcp"
 
 mcp_connector = MCPServerStreamableHTTP(url=MCP_SERVER_URL, tool_prefix="menu")
 
-# ... der Rest des Codes bleibt unverändert ...
 load_dotenv()
 
 agent = Agent(
