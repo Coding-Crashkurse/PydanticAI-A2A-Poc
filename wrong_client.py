@@ -4,24 +4,13 @@ from uuid import uuid4
 import traceback
 import json
 
-# Official Google A2A client library and types
 from a2a.client import A2AClient, A2ACardResolver, A2AClientHTTPError
 from a2a.client.helpers import create_text_message_object
-from a2a.types import (
-    MessageSendParams,
-    SendMessageRequest,
-    Role
-)
+from a2a.types import MessageSendParams, SendMessageRequest, Role
 
 BASE_URL = "http://localhost:7000"
 
 async def main():
-    """
-    This script demonstrates why the OFFICIAL a2a.client is not
-    directly compatible with the pydantic-ai server.
-
-    It will send a standard-compliant request that is expected to fail.
-    """
     print(f"▶️  Connecting to the A2A Agent at {BASE_URL}...")
 
     try:
@@ -37,24 +26,17 @@ async def main():
                 role=Role.user,
                 content="What do you have for appetizers?",
             )
-            print("▶️  Standard-compliant message created.")
             
             request = SendMessageRequest(
                 params=MessageSendParams(message=user_message),
                 id=f"request-{uuid4().hex}",
             )
-            print("▶️  Preparing standard-compliant request with 'method: message/send'...")
-            print("-" * 50)
             
-            # This step is EXPECTED TO FAIL
-            print("▶️  Sending request... (Expecting a server error)")
             await client.send_message(request)
 
-            # This part should never be reached
             print("\n❌ SURPRISE! The server unexpectedly accepted the request.")
 
     except A2AClientHTTPError as e:
-        # This is the expected error path!
         print("\n✅ ERROR CAUGHT AS EXPECTED!")
         print("-" * 50)
         print(f"   The server responded with an HTTP error: {e.status_code}")
@@ -71,7 +53,6 @@ async def main():
     except Exception as e:
         print(f"\n🚨 An unexpected error occurred: {type(e).__name__}: {e}")
         traceback.print_exc()
-
 
 if __name__ == "__main__":
     asyncio.run(main())

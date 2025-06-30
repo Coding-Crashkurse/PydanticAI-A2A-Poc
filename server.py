@@ -1,12 +1,8 @@
-# a2a_server.py
 import uvicorn
 from dotenv import load_dotenv
 from pydantic_ai import Agent
 from pydantic_ai.mcp import MCPServerStreamableHTTP
 
-# --- DIE ÄNDERUNG ---
-# ALT: MCP_SERVER_URL = "http://localhost:8001/mcp/"
-# NEU: Entferne den letzten Schrägstrich
 MCP_SERVER_URL = "http://localhost:8001/mcp"
 
 mcp_connector = MCPServerStreamableHTTP(url=MCP_SERVER_URL, tool_prefix="menu")
